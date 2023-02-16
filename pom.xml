@@ -38,17 +38,7 @@
 
 
         <!--Camel dependencies-->
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-activemq</artifactId>
-            <version>3.20.2</version>
-        </dependency>
 
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-kafka</artifactId>
-            <version>3.20.2</version>
-        </dependency>
 
         <!--Plugin dependencies-->
         <dependency>

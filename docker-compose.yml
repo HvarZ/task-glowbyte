@@ -6,24 +6,21 @@ services:
     ports:
       - "8161:8161"
     container_name: activemq
+    networks:
+      - task_glowbyte
 
   postgres:
     image: postgres:15.2
+    restart: always
     environment:
-      POSTGRES_DB: "task-db"
+      POSTGRES_DB: "glowbyte_db"
       POSTGRES_USER: "glowbyte"
       POSTGRES_PASSWORD: "password"
     ports:
-      - "5433:5433"
+      - "5433:5432"
+    networks:
+      - task_glowbyte
 
-
-  app:
-    image: app
-    container_name: app
-    ports:
-      - "8080:8080"
-    environment:
-      - spring.activemq.broker-url=tcp://activemq:8161
-    depends_on:
-      - activemq
-      - postgres
+networks:
+  task_glowbyte:
+    driver: host
