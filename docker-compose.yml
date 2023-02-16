@@ -1,26 +1,18 @@
 version: '3.9'
 services:
-  activemq:
-    image: rmohr/activemq:5.15.9-alpine
-    restart: always
-    ports:
-      - "8161:8161"
-    container_name: activemq
-    networks:
-      - task_glowbyte
+  #activemq:
+  #  image: rmohr/activemq:5.15.9-alpine
+  #  restart: always
+  #  ports:
+  #    - "8161:8161"
+  #  container_name: activemq
 
   postgres:
-    image: postgres:15.2
-    restart: always
+    build:
+      context: /database
     environment:
       POSTGRES_DB: "glowbyte_db"
       POSTGRES_USER: "glowbyte"
       POSTGRES_PASSWORD: "password"
     ports:
       - "5433:5432"
-    networks:
-      - task_glowbyte
-
-networks:
-  task_glowbyte:
-    driver: host
