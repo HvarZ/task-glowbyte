@@ -1,9 +1,40 @@
-create table if not exists player (
-    id integer primary key,
-    nickname varchar not null
-);
+CREATE TABLE IF NOT EXISTS APPLICATION (
+    APPLICATION_ID      NUMERIC(15, 0) PRIMARY KEY,
+    CREDIT_AMOUNT       NUMERIC(15, 2),
+    CREDIT_RATE         NUMERIC(5, 2),
+    CREDIT_TERM         NUMERIC(5, 0)
+    );
 
-insert into player (id, nickname) values (1, 'kaparzo');
-insert into player (id, nickname) values (2, 'aggressive');
-insert into player (id, nickname) values (3, 'hvarz');
-insert into player (id, nickname) values (4, 'ezury');
+
+CREATE TABLE IF NOT EXISTS CLIENT (
+    APPLICATION_ID      NUMERIC(15, 0) REFERENCES APPLICATION(APPLICATION_ID),
+    CLIENT_ID           NUMERIC(15, 0) PRIMARY KEY,
+    FIRSTNAME           VARCHAR(255),
+    SURNAME             VARCHAR(255),
+    LASTNAME            VARCHAR(255),
+    BIRTHDATE           DATE,
+    BIRTHPLACE          VARCHAR(255)
+    );
+
+
+
+CREATE TABLE IF NOT EXISTS ADDRESS (
+    APPLICATION_ID      NUMERIC(15, 0) REFERENCES APPLICATION(APPLICATION_ID),
+    CLIENT_ID           NUMERIC(15, 0) REFERENCES CLIENT(CLIENT_ID),
+    ADDRESS_ID          NUMERIC(15, 0) PRIMARY KEY,
+    COUNTRY             VARCHAR(255),
+    CITY                VARCHAR(255),
+    STREET              VARCHAR(255),
+    HOUSE               VARCHAR(255),
+    BUILDING            VARCHAR(255),
+    FLAT                VARCHAR(255)
+    );
+
+
+CREATE TABLE IF NOT EXISTS INCOME (
+    APPLICATION_ID      NUMERIC(15, 0) REFERENCES APPLICATION(APPLICATION_ID),
+    CLIENT_ID           NUMERIC(15, 0) REFERENCES CLIENT(CLIENT_ID),
+    INCOME_ID           NUMERIC(15, 0) PRIMARY KEY,
+    MONTH               DATE,
+    AMOUNT              NUMERIC(15, 2)
+    );
