@@ -19,7 +19,7 @@ public class Income {
     @Column(name = "CLIENT_ID")
     private long clientId;
 
-    @OneToOne
+    @ManyToOne
     @Column(name = "APPLICATION_ID")
     private long applicationId;
 
