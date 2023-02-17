@@ -8,6 +8,7 @@ import java.util.Date;
 
 @Data
 @NoArgsConstructor
+@Entity
 @Table(name = "INCOME")
 public class Income {
     @Id
@@ -16,12 +17,12 @@ public class Income {
     private long incomeId;
 
     @ManyToOne
-    @Column(name = "CLIENT_ID")
-    private long clientId;
+    @JoinColumn(name = "CLIENT_ID")
+    private Client client;
 
     @ManyToOne
-    @Column(name = "APPLICATION_ID")
-    private long applicationId;
+    @JoinColumn(name = "APPLICATION_ID")
+    private Application application;
 
     @Column(name = "MONTH")
     private Date month;
@@ -29,9 +30,7 @@ public class Income {
     @Column(name = "AMOUNT")
     private float amount;
 
-    public Income(long clientId, long applicationId, Date month, float amount) {
-        this.clientId = clientId;
-        this.applicationId = applicationId;
+    public Income(Date month, float amount) {
         this.month = month;
         this.amount = amount;
     }

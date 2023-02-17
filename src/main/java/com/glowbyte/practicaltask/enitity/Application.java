@@ -3,18 +3,17 @@ package com.glowbyte.practicaltask.enitity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
+@Entity
 @Table(name = "APPLICATION")
 public class Application {
     @Id
     @GeneratedValue
-    @Column
+    @Column(name = "APPLICATION_ID")
     private long applicationId;
 
     @Column(name = "CREDIT_AMOUNT")
@@ -25,6 +24,12 @@ public class Application {
 
     @Column(name = "CREDIT_TERM")
     private int creditTerm;
+
+    @ManyToOne
+    private Client client;
+
+    @OneToMany
+    private Set<Income> income;
 
     public Application(float creditAmount, float creditRate, int creditTerm) {
         this.creditAmount = creditAmount;

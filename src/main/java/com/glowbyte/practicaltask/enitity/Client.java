@@ -5,9 +5,11 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
+@Entity
 @Table(name = "CLIENT")
 public class Client {
     @Id
@@ -15,9 +17,9 @@ public class Client {
     @Column(name = "CLIENT_ID")
     private long clientId;
 
-    @OneToMany
-    @Column(name = "APPLICATION_ID")
-    private long applicationId;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "APPLICATION_ID")
+    private Set<Application> applications;
 
     @Column(name = "FIRSTNAME")
     private String firstname;
@@ -34,9 +36,14 @@ public class Client {
     @Column(name = "BIRTHPLACE")
     private String birthplace;
 
+    @OneToOne(mappedBy = "client")
+    private Address address;
 
-    public Client(long applicationId, String firstname, String surname, String lastname, Date birthdate, String birthplace) {
-        this.applicationId = applicationId;
+    @OneToMany
+    private Set<Income> income;
+
+
+    public Client(String firstname, String surname, String lastname, Date birthdate, String birthplace) {
         this.firstname = firstname;
         this.surname = surname;
         this.lastname = lastname;

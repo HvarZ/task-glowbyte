@@ -5,9 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
+@Entity
 @Table(name = "Address")
 public class Address {
     @Id
@@ -15,13 +17,13 @@ public class Address {
     @Column(name = "ADDRESS_ID")
     private long addressId;
 
-    @OneToOne
-    @Column(name = "CLIENT_ID")
-    private long clientId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "CLIENT_ID")
+    private Client client;
 
     @OneToMany
     @Column(name = "APPLICATION_ID")
-    private long applicationId;
+    private Set<Application> applicationId;
 
     @Column(name = "COUNTRY")
     private String country;
@@ -41,8 +43,7 @@ public class Address {
     @Column(name = "FLAT")
     private String flat;
 
-    public Address(long clientId, long applicationId, String country, String city, String street, String house, String building, String flat) {
-        this.clientId = clientId;
+    public Address(Set<Application> applicationId, String country, String city, String street, String house, String building, String flat) {
         this.applicationId = applicationId;
         this.country = country;
         this.city = city;
