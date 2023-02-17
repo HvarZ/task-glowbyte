@@ -39,6 +39,18 @@
         <!--Camel dependencies-->
         <dependency>
             <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-spring-boot</artifactId>
+            <version>3.20.0</version> <!-- use the same version as your Camel core version -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-pgevent</artifactId>
+            <version>3.20.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel.springboot</groupId>
             <artifactId>camel-spring-boot-starter</artifactId>
             <version>3.20.0</version>
             <exclusions>
