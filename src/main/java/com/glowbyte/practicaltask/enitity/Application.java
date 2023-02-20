@@ -25,8 +25,8 @@ public class Application {
     @Column(name = "CREDIT_TERM")
     private int creditTerm;
 
-    @ManyToOne
-    private Client client;
+    @OneToMany
+    private Set<Client> client;
 
     @OneToMany
     private Set<Income> income;
