@@ -17,9 +17,9 @@ public class Client {
     @Column(name = "CLIENT_ID")
     private long clientId;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "APPLICATION_ID")
-    private Set<Application> applications;
+    private Application applications;
 
     @Column(name = "FIRSTNAME")
     private String firstname;
@@ -36,8 +36,8 @@ public class Client {
     @Column(name = "BIRTHPLACE")
     private String birthplace;
 
-    @OneToOne(mappedBy = "client")
-    private Address address;
+    @OneToMany(mappedBy = "client")
+    private Set<Address> address;
 
     @OneToMany
     private Set<Income> income;

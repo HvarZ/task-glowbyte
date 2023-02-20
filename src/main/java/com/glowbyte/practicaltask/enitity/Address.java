@@ -17,7 +17,7 @@ public class Address {
     @Column(name = "ADDRESS_ID")
     private long addressId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CLIENT_ID")
     private Client client;
 
