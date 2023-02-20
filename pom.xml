@@ -15,6 +15,7 @@
     <description>camel + kafka + activemq</description>
     <properties>
         <java.version>17</java.version>
+        <camel.version>3.20.0</camel.version>
     </properties>
     <dependencies>
         <!--DB dependencies-->
@@ -40,13 +41,19 @@
         <dependency>
             <groupId>org.apache.camel.springboot</groupId>
             <artifactId>camel-spring-boot</artifactId>
-            <version>3.20.0</version> <!-- use the same version as your Camel core version -->
+            <version>3.20.0</version>
         </dependency>
 
         <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-jdbc</artifactId>
-            <version>3.20.0</version>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-sql-starter</artifactId>
+            <version>${camel.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.yaml</groupId>
+                    <artifactId>snakeyaml</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -72,6 +79,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jaxb</artifactId>
+            <version>3.20.0</version>
         </dependency>
     </dependencies>
 
