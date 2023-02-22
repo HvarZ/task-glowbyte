@@ -1,0 +1,73 @@
+package com.glowbyte.practicaltask.entity;
+
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import javax.persistence.*;
+import javax.xml.bind.annotation.*;
+import java.math.BigDecimal;
+import java.util.Objects;
+import java.util.Set;
+
+@Data
+@NoArgsConstructor
+@Entity
+@ToString
+@Table(name = "APPLICATION")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Application {
+    @Id
+    @GeneratedValue
+    @Column(name = "APPLICATION_ID")
+    @XmlAttribute(name = "Id")
+    private BigDecimal applicationId;
+
+    @XmlAttribute(name = "CreditAmount")
+    @Column(name = "CREDIT_AMOUNT")
+    private BigDecimal creditAmount;
+
+    @XmlAttribute(name = "CreditRate")
+    @Column(name = "CREDIT_RATE")
+    private BigDecimal creditRate;
+
+    @XmlAttribute(name = "CreditRate")
+    @Column(name = "CREDIT_TERM")
+    private BigDecimal creditTerm;
+
+    @OneToMany
+    @XmlElementWrapper(name = "Clients")
+    @XmlElement(name = "Client")
+    private Set<Client> client;
+
+    @OneToMany
+    @XmlElementWrapper(name = "Incomes")
+    @XmlElement(name = "Income")
+    private Set<Income> income;
+
+    @Builder
+    public Application(BigDecimal applicationId, BigDecimal creditAmount, BigDecimal creditRate, BigDecimal creditTerm) {
+        this.applicationId = applicationId;
+        this.creditAmount = creditAmount;
+        this.creditRate = creditRate;
+        this.creditTerm = creditTerm;
+    }
+
+    public Application(BigDecimal applicationId) {
+        this.applicationId = applicationId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Application that = (Application) o;
+        return applicationId.equals(that.applicationId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(applicationId);
+    }
+}
