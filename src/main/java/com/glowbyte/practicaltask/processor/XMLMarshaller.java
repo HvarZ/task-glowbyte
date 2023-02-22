@@ -84,8 +84,9 @@ public class XMLMarshaller implements Processor {
         Marshaller marshaller = context.createMarshaller();
 
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        marshaller.marshal(result, System.out);
 
+        marshaller.marshal(result, System.out);
+        //exchange.getIn().setBody(body);
     }
 
     private Application buildApp(LinkedCaseInsensitiveMap<Object> application) {

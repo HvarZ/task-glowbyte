@@ -3,20 +3,19 @@ package com.glowbyte.practicaltask.entity;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @XmlRootElement(name = "Applications")
 public class Applications {
     @XmlElement(name = "Application")
-    private final List<Application> applications;
+    private final Set<Application> applications;
 
     public Applications() {
-        applications = new ArrayList<>();
+        applications = new HashSet<>();
     }
 
     @XmlTransient
-    public List<Application> getApplications() {
+    public Set<Application> getApplications() {
         return applications;
     }
 }

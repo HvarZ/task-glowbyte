@@ -51,6 +51,7 @@ public class Client {
 
     @OneToMany(mappedBy = "client")
     @XmlElementWrapper(name = "Addresses")
+    @XmlElement(name = "Address")
     private Set<Address> address;
 
     public Client(String firstname, String surname, String lastname, Date birthdate, String birthplace) {

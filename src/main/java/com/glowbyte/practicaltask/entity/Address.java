@@ -14,7 +14,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "Address")
-@XmlRootElement(name = "Address")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Address {
     @Id
