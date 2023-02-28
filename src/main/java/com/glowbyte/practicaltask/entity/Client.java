@@ -44,32 +44,26 @@ public class Client {
     @XmlAttribute(name = "BirthPlace")
     private String birthplace;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "APPLICATION_ID")
-    @XmlTransient
-    private Application applications;
-
     @OneToMany(mappedBy = "client")
     @XmlElementWrapper(name = "Addresses")
     @XmlElement(name = "Address")
     private Set<Address> address;
 
-    public Client(String firstname, String surname, String lastname, Date birthdate, String birthplace) {
-        this.firstname = firstname;
-        this.surname = surname;
-        this.lastname = lastname;
-        this.birthdate = birthdate;
-        this.birthplace = birthplace;
-    }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "APPLICATION_ID")
+    @XmlTransient
+    private Application applications;
 
     @Builder
-    public Client(BigDecimal clientId, String firstname, String surname, String lastname, Date birthdate, String birthplace) {
+    public Client(BigDecimal clientId, String firstname, String surname, String lastname, Date birthdate, String birthplace, Set<Address> address) {
         this.clientId = clientId;
         this.firstname = firstname;
         this.surname = surname;
         this.lastname = lastname;
         this.birthdate = birthdate;
         this.birthplace = birthplace;
+        this.address = address;
     }
 
     public Client(BigDecimal clientId) {
