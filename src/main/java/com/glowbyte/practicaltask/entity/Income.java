@@ -19,10 +19,10 @@ public class Income {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "INCOME_ID")
-    @XmlAttribute(name = "Income CLientId")
+    @XmlTransient
     private BigDecimal incomeId;
-
     @Column(name = "CLIENT_ID")
+    @XmlAttribute(name = "Income CLientId")
     private BigDecimal clientId;
 
     @Column(name = "MONTH")
@@ -40,8 +40,7 @@ public class Income {
     private Application application;
 
     @Builder
-    public Income(BigDecimal incomeId, BigDecimal clientId, Date month, BigDecimal amount) {
-        this.incomeId = incomeId;
+    public Income(BigDecimal clientId, Date month, BigDecimal amount) {
         this.clientId = clientId;
         this.month = month;
         this.amount = amount;
