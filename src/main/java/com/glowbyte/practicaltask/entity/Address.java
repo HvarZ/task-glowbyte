@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -21,7 +20,6 @@ public class Address {
     @Column(name = "ADDRESS_ID")
     @XmlTransient
     private BigDecimal addressId;
-
     @Column(name = "COUNTRY")
     @XmlAttribute(name = "Country")
     private String country;
@@ -51,10 +49,6 @@ public class Address {
     @XmlTransient
     private Client client;
 
-    @OneToMany
-    @Column(name = "APPLICATION_ID")
-    @XmlTransient
-    private Set<Application> applicationId;
 
     @Builder
     public Address(BigDecimal addressId, String country, String city, String street, String house, String building, String flat) {
