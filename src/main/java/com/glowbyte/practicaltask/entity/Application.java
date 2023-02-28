@@ -47,11 +47,13 @@ public class Application {
     private Set<Income> income;
 
     @Builder
-    public Application(BigDecimal applicationId, BigDecimal creditAmount, BigDecimal creditRate, BigDecimal creditTerm) {
+    public Application(BigDecimal applicationId, BigDecimal creditAmount, BigDecimal creditRate, BigDecimal creditTerm, Set<Client> client, Set<Income> income) {
         this.applicationId = applicationId;
         this.creditAmount = creditAmount;
         this.creditRate = creditRate;
         this.creditTerm = creditTerm;
+        this.client = client;
+        this.income = income;
     }
 
     public Application(BigDecimal applicationId) {
