@@ -18,7 +18,7 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ADDRESS_ID")
-    @XmlTransient
+    @XmlAttribute(name = "Id")
     private BigDecimal addressId;
     @Column(name = "COUNTRY")
     @XmlAttribute(name = "Country")

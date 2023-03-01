@@ -22,7 +22,7 @@ public class Income {
     @XmlTransient
     private BigDecimal incomeId;
     @Column(name = "CLIENT_ID")
-    @XmlAttribute(name = "Income CLientId")
+    @XmlAttribute(name = "CLientId")
     private BigDecimal clientId;
 
     @Column(name = "MONTH")

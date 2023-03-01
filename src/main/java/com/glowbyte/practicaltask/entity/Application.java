@@ -32,7 +32,7 @@ public class Application {
     @Column(name = "CREDIT_RATE")
     private BigDecimal creditRate;
 
-    @XmlAttribute(name = "CreditRate")
+    @XmlAttribute(name = "CreditTerm")
     @Column(name = "CREDIT_TERM")
     private BigDecimal creditTerm;
 
