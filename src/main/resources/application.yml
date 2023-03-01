@@ -1,0 +1,15 @@
+spring:
+  activemq:
+    broker-url: tcp://localhost:61616
+
+camel:
+  springboot:
+    main-run-controller: true
+  component:
+    activemq:
+      test-connection-on-startup: true
+      use-single-connection: true
+      delivery-delay: -1
+      allow-null-body: true
+    kafka:
+      brokers: tcp://localhost:9094
