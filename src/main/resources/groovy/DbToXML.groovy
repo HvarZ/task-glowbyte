@@ -1,11 +1,11 @@
-package com.glowbyte.practicaltask.groovy
+package groovy
 
 import com.glowbyte.practicaltask.config.DBConfig
 import com.glowbyte.practicaltask.entity.Address
 import com.glowbyte.practicaltask.entity.Applications
 import com.glowbyte.practicaltask.entity.Client
 import com.glowbyte.practicaltask.entity.Income
-
+import com.glowbyte.practicaltask.groovy.DBBuilder
 import groovy.sql.Sql
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
