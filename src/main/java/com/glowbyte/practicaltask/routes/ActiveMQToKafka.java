@@ -1,17 +1,16 @@
 package com.glowbyte.practicaltask.routes;
 
-import com.glowbyte.practicaltask.entity.Applications;
+import com.glowbyte.practicaltask.entity.Application;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.converter.jaxb.JaxbDataFormat;
-import org.springframework.stereotype.Component;
 
 import javax.xml.bind.JAXBContext;
 
-@Component
+//@Component
 public class ActiveMQToKafka extends RouteBuilder {
     @Override
     public void configure() throws Exception {
-        JAXBContext context = JAXBContext.newInstance(Applications.class);
+        JAXBContext context = JAXBContext.newInstance(Application.class);
         JaxbDataFormat jaxbDataFormat = new JaxbDataFormat();
         jaxbDataFormat.setContext(context);
 
