@@ -16,6 +16,7 @@ import java.util.Set;
 @Entity
 @ToString
 @Table(name = "APPLICATION")
+@XmlRootElement(name = "Application")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Application {
     @Id
