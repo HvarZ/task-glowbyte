@@ -54,8 +54,12 @@ public class Income {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Income income = (Income) o;
-        return Objects.equals(incomeId, income.incomeId);
+
+        if (!Objects.equals(incomeId, income.incomeId)) return false;
+        if (!clientId.equals(income.clientId)) return false;
+        return month.equals(income.month);
     }
 
     @Override
