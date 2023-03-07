@@ -1,7 +1,7 @@
 package com.glowbyte.practicaltask.routes;
 
 import com.glowbyte.practicaltask.entity.Application;
-import com.glowbyte.practicaltask.entity.Income;
+import com.glowbyte.practicaltask.processors.DBFiller;
 import com.glowbyte.practicaltask.repository.ApplicationRepo;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.converter.jaxb.JaxbDataFormat;
@@ -14,6 +14,7 @@ import javax.xml.bind.JAXBContext;
 public class FromActiveMQRoute extends RouteBuilder {
     @Autowired
     ApplicationRepo applicationRepo;
+
     @Override
     public void configure() throws Exception {
         JAXBContext context = JAXBContext.newInstance(Application.class);
@@ -23,11 +24,7 @@ public class FromActiveMQRoute extends RouteBuilder {
         from("activemq:test_1")
                 .routeId("First Route")
                 .unmarshal(jaxbDataFormat)
-                .process(exchange -> {
-                    Application application = (Application) exchange.getIn().getBody();
-                    //applicationRepo.save(application);
-                    exchange.getIn().setBody(application);
-                })
+                .process(new DBFiller(applicationRepo))
                 .marshal().jaxb()
                 .log("\n${body}");
     }
