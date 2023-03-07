@@ -2,10 +2,11 @@ package groovy
 
 import com.glowbyte.practicaltask.config.DBConfig
 import com.glowbyte.practicaltask.entity.Address
-import com.glowbyte.practicaltask.entity.Applications
+import com.glowbyte.practicaltask.entity.Application
 import com.glowbyte.practicaltask.entity.Client
 import com.glowbyte.practicaltask.entity.Income
 import com.glowbyte.practicaltask.groovy.DBBuilder
+
 import groovy.sql.Sql
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
@@ -15,14 +16,14 @@ def dataSource = context.getBean("dataSource")
 def sql = new Sql(dataSource)
 
 @GrabConfig(initContextClassLoader = true)
-static Applications transform(def sql) {
-    Applications result = new Applications()
+static Application transform(def sql, int id) {
+    Application result = null
     Map<BigDecimal, Set<Address>> clientAddresses = new HashMap<>()
     Map<BigDecimal, Set<Income>> applicationIncomes = new HashMap<>()
     Map<BigDecimal, Set<Client>> applicationClient = new HashMap<>()
 
     // Сбор адрессов для клиентов
-    sql.query('select * from address') { resultSet ->
+    sql.query('select * from address where application_id = ' + id + ';') { resultSet ->
         while (resultSet.next()) {
             BigDecimal key = resultSet.getBigDecimal("client_id")
             if (clientAddresses.containsKey(key)) {
@@ -43,7 +44,7 @@ static Applications transform(def sql) {
     }
 
 // сбор клиентов для приложений
-    sql.query('select * from client') { resultSet ->
+    sql.query('select * from client where application_id = ' + id + ';') { resultSet ->
         while (resultSet.next()) {
             BigDecimal key = resultSet.getBigDecimal("application_id")
             if (applicationClient.containsKey(key)) {
@@ -51,7 +52,7 @@ static Applications transform(def sql) {
                         DBBuilder.buildClient(resultSet, clientAddresses)
                 )
             } else {
-                Set<Client> clients = new HashSet<>();
+                Set<Client> clients = new HashSet<>()
                 clients.add(
                         DBBuilder.buildClient(resultSet, clientAddresses)
                 )
@@ -61,7 +62,7 @@ static Applications transform(def sql) {
     }
 
     // Сбор дохода для приложений
-    sql.query('select * from income;') { resultSet ->
+    sql.query('select * from income where application_id = ' + id + ';') { resultSet ->
         while (resultSet.next()) {
             BigDecimal key = resultSet.getBigDecimal("application_id")
             if (applicationIncomes.containsKey(key)) {
@@ -79,15 +80,13 @@ static Applications transform(def sql) {
     }
 
     // Сбор в result
-    sql.query('select * from application') { resultSet ->
+    sql.query('select * from application where application_id = ' + id + ';') { resultSet ->
         while (resultSet.next()) {
-            result.getApplications().add(
-                    DBBuilder.buildApplication(resultSet, applicationClient, applicationIncomes)
-            )
+            result = DBBuilder.buildApplication(resultSet, applicationClient, applicationIncomes)
         }
     }
 
     return result
 }
 
-def result = transform(sql)
+def result = transform(sql, 1)
