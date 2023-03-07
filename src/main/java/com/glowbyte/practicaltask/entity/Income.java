@@ -17,10 +17,12 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Income {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "INCOME_SEQUENCE")
+    @SequenceGenerator(name = "INCOME_SEQUENCE", sequenceName = "INCOME_SEQUENCE", allocationSize = 1)
     @Column(name = "INCOME_ID")
     @XmlTransient
     private BigDecimal incomeId;
+
     @Column(name = "CLIENT_ID")
     @XmlAttribute(name = "CLientId")
     private BigDecimal clientId;

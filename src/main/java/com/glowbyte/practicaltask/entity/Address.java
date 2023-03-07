@@ -12,13 +12,14 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "Address")
+@Table(name = "ADDRESS")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADDRESS_SEQUENCE")
+    @SequenceGenerator(name = "ADDRESS_SEQUENCE", sequenceName = "ADDRESS_SEQUENCE", allocationSize = 1)
     @Column(name = "ADDRESS_ID")
-    @XmlAttribute(name = "Id")
+    @XmlTransient
     private BigDecimal addressId;
     @Column(name = "COUNTRY")
     @XmlAttribute(name = "Country")
@@ -43,6 +44,11 @@ public class Address {
     @Column(name = "FLAT")
     @XmlAttribute(name = "Flat")
     private String flat;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "APPLICATION_ID")
+    @XmlTransient
+    private Application application;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CLIENT_ID")
