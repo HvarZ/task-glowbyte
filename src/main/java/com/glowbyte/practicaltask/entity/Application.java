@@ -14,13 +14,11 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @Entity
-@ToString
 @Table(name = "APPLICATION")
 @XmlRootElement(name = "Application")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Application {
     @Id
-    @GeneratedValue
     @Column(name = "APPLICATION_ID")
     @XmlAttribute(name = "Id")
     private BigDecimal applicationId;
@@ -37,12 +35,18 @@ public class Application {
     @Column(name = "CREDIT_TERM")
     private BigDecimal creditTerm;
 
-    @OneToMany
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "application")
     @XmlElementWrapper(name = "Clients")
     @XmlElement(name = "Client")
     private Set<Client> client;
 
-    @OneToMany
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "application")
+    @XmlTransient
+    private Set<Address> address;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "application")
     @XmlElementWrapper(name = "Incomes")
     @XmlElement(name = "Income")
     private Set<Income> income;
