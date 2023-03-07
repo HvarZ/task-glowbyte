@@ -18,7 +18,6 @@ import java.util.Set;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Client {
     @Id
-    @GeneratedValue
     @Column(name = "CLIENT_ID")
     @XmlAttribute(name = "Id")
     private BigDecimal clientId;
@@ -44,16 +43,16 @@ public class Client {
     @XmlAttribute(name = "BirthPlace")
     private String birthplace;
 
-    @OneToMany(mappedBy = "client")
-    @XmlElementWrapper(name = "Addresses")
-    @XmlElement(name = "Address")
-    private Set<Address> address;
-
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "APPLICATION_ID")
     @XmlTransient
-    private Application applications;
+    private Application application;
+
+    @OneToMany(mappedBy = "client")
+    @XmlElementWrapper(name = "Addresses")
+    @XmlElement(name = "Address")
+    private Set<Address> address;
 
     @Builder
     public Client(BigDecimal clientId, String firstname, String surname, String lastname, Date birthdate, String birthplace, Set<Address> address) {
