@@ -24,7 +24,7 @@ public class Income {
     private BigDecimal incomeId;
 
     @Column(name = "CLIENT_ID")
-    @XmlAttribute(name = "CLientId")
+    @XmlAttribute(name = "ClientId")
     private BigDecimal clientId;
 
     @Column(name = "MONTH")
