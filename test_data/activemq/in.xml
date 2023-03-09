@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Application Id="12345" CreditAmount="" CreditRate="" CreditTerm="">
+    <Clients>
+        <Client Id="3451" FirstName="Zakhar" SurName="Maksim" LastName="Ushakov" BirthPlace="Penza">
+            <Adresses>
+                <Address Country="Russia" City="Moscow" Street="Sevastopolsky avenue" House="7" Building="5" Flat="92"/>
+                <Address Country="Germany" City="Dortmund" Street="Signal Reduna Park" House="1"  Flat="0"/>
+            </Adresses>
+        </Client>
+        <Client Id="3453431" FirstName="Alex" SurName="Dmitry" LastName="Chastikov" BirthPlace="Nijni Tagil">
+            <Adresses>
+                <Address Country="Russia" City="Moscow" Street="Taganskaya" House="7" Building="2" Flat="14"/>
+            </Adresses>
+        </Client>
+    </Clients>
+    <Incomes>
+        <Income ClientId="3451" Month="2023-01-01" Amount="12"/>
+        <Income ClientId="3451" Month="2023-02-01" Amount="123"/>
+        <Income ClientId="3451" Month="2023-03-01" Amount="14"/>
+        <Income ClientId="3451" Month="2023-04-01" Amount="16"/>
+        <Income ClientId="3451" Month="2023-05-01" Amount="178"/>
+        <Income ClientId="3451" Month="2023-06-01" Amount="2"/>
+        <Income ClientId="3453431" Month="2023-01-01" Amount="95"/>
+        <Income ClientId="3453431" Month="2023-02-01" Amount="75"/>
+        <Income ClientId="3453431" Month="2023-03-01" Amount="18"/>
+        <Income ClientId="3453431" Month="2023-04-01" Amount="49"/>
+    </Incomes>
+</Application>
