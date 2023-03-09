@@ -16,7 +16,7 @@ import java.util.Set;
 public class DBFiller implements Processor {
     private final ApplicationRepo applicationRepo;
     @Override
-    public void process(Exchange exchange) throws Exception {
+    public void process(Exchange exchange) {
         Application application = (Application) exchange.getIn().getBody();
         Set<Address> addressSet = new HashSet<>();
         for (Client client : application.getClient()) {
