@@ -1,11 +1,10 @@
 package com.glowbyte.practicaltask.routes;
 
 import com.glowbyte.practicaltask.entity.Application;
-import com.glowbyte.practicaltask.entity.json.InKafka;
+import com.glowbyte.practicaltask.entity.json_out.OutKafka;
 import com.glowbyte.practicaltask.processors.DBFiller;
 import com.glowbyte.practicaltask.processors.XmlToJsonPOJO;
 import com.glowbyte.practicaltask.repository.ApplicationRepo;
-import lombok.Cleanup;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jackson.JacksonDataFormat;
 import org.apache.camel.converter.jaxb.JaxbDataFormat;
@@ -24,9 +23,7 @@ public class FromActiveMQRoute extends RouteBuilder {
         JAXBContext context = JAXBContext.newInstance(Application.class);
         JaxbDataFormat jaxbDataFormat = new JaxbDataFormat();
         jaxbDataFormat.setContext(context);
-
-        @Cleanup
-        JacksonDataFormat jsonDataFormat = new JacksonDataFormat(InKafka.class);
+        JacksonDataFormat jsonDataFormat = new JacksonDataFormat(OutKafka.class);
 
         from("activemq:test_1")
                 .routeId("First Route")
@@ -34,6 +31,6 @@ public class FromActiveMQRoute extends RouteBuilder {
                 .process(new DBFiller(applicationRepo))
                 .process(new XmlToJsonPOJO())
                 .marshal(jsonDataFormat)
-                .to("kafka:route_1");
+                .to("kafka:topic_1");
     }
 }
