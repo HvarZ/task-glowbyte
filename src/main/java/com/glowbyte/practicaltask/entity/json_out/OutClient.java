@@ -1,4 +1,4 @@
-package com.glowbyte.practicaltask.entity.json;
+package com.glowbyte.practicaltask.entity.json_out;
 
 import lombok.Builder;
 import lombok.Data;
@@ -7,12 +7,12 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Data
-public class KafkaClient {
+public class OutClient {
     private BigDecimal id;
-    private List<KafkaIncome> incomes;
+    private List<OutIncome> incomes;
 
     @Builder
-    public KafkaClient(BigDecimal id, List<KafkaIncome> incomes) {
+    public OutClient(BigDecimal id, List<OutIncome> incomes) {
         this.id = id;
         this.incomes = incomes;
     }
