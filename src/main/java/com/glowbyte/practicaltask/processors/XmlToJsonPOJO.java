@@ -2,9 +2,9 @@ package com.glowbyte.practicaltask.processors;
 
 import com.glowbyte.practicaltask.entity.Application;
 import com.glowbyte.practicaltask.entity.Income;
-import com.glowbyte.practicaltask.entity.json.KafkaClient;
-import com.glowbyte.practicaltask.entity.json.InKafka;
-import com.glowbyte.practicaltask.entity.json.KafkaIncome;
+import com.glowbyte.practicaltask.entity.json_out.OutClient;
+import com.glowbyte.practicaltask.entity.json_out.OutKafka;
+import com.glowbyte.practicaltask.entity.json_out.OutIncome;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 
@@ -18,19 +18,19 @@ public class XmlToJsonPOJO implements Processor {
     @Override
     public void process(Exchange exchange) {
         Application application = (Application) exchange.getIn().getBody();
-        Map<BigDecimal, List<KafkaIncome>> incomeMap = new HashMap<>();
+        Map<BigDecimal, List<OutIncome>> incomeMap = new HashMap<>();
 
         for (Income income : application.getIncome()) {
             if (incomeMap.containsKey(income.getClientId())) {
                 incomeMap.get(income.getClientId()).add(
-                        KafkaIncome.builder()
+                        OutIncome.builder()
                                 .amount(income.getAmount())
                                 .month(income.getMonth())
                                 .build()
                 );
             } else {
-                List<KafkaIncome> list = new ArrayList<>();
-                list.add(KafkaIncome.builder()
+                List<OutIncome> list = new ArrayList<>();
+                list.add(OutIncome.builder()
                             .amount(income.getAmount())
                             .month(income.getMonth())
                             .build());
@@ -38,15 +38,15 @@ public class XmlToJsonPOJO implements Processor {
             }
         }
 
-        List<KafkaClient> clients = new ArrayList<>();
-        for (Map.Entry<BigDecimal, List<KafkaIncome>> entry : incomeMap.entrySet()) {
-            clients.add(KafkaClient.builder()
+        List<OutClient> clients = new ArrayList<>();
+        for (Map.Entry<BigDecimal, List<OutIncome>> entry : incomeMap.entrySet()) {
+            clients.add(OutClient.builder()
                     .id(entry.getKey())
                     .incomes(entry.getValue())
                     .build());
         }
 
-        InKafka body = InKafka.builder()
+        OutKafka body = OutKafka.builder()
                 .id(application.getApplicationId())
                 .monthly_payment(new BigDecimal("123"))
                 .clients(clients)

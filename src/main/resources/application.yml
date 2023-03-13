@@ -12,4 +12,4 @@ camel:
       delivery-delay: -1
       allow-null-body: true
     kafka:
-      brokers: tcp://localhost:9094
+      brokers: localhost:9094
