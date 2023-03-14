@@ -1,7 +1,7 @@
 package com.glowbyte.practicaltask.processors;
 
-import com.glowbyte.practicaltask.entity.Application;
-import com.glowbyte.practicaltask.entity.Income;
+import com.glowbyte.practicaltask.entity.db.Application;
+import com.glowbyte.practicaltask.entity.db.Income;
 import com.glowbyte.practicaltask.entity.json_out.OutClient;
 import com.glowbyte.practicaltask.entity.json_out.OutKafka;
 import com.glowbyte.practicaltask.entity.json_out.OutIncome;

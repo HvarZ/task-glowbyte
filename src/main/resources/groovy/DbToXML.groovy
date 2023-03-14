@@ -1,10 +1,10 @@
 package groovy
 
 import com.glowbyte.practicaltask.config.DBConfig
-import com.glowbyte.practicaltask.entity.Address
-import com.glowbyte.practicaltask.entity.Application
-import com.glowbyte.practicaltask.entity.Client
-import com.glowbyte.practicaltask.entity.Income
+import com.glowbyte.practicaltask.entity.db.Address
+import com.glowbyte.practicaltask.entity.db.Application
+import com.glowbyte.practicaltask.entity.db.Client
+import com.glowbyte.practicaltask.entity.db.Income
 import com.glowbyte.practicaltask.groovy.DBBuilder
 
 import groovy.sql.Sql
