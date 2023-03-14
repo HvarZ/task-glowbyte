@@ -13,3 +13,5 @@ camel:
       allow-null-body: true
     kafka:
       brokers: localhost:9094
+      group-id: from_topic_1
+      auto-offset-reset: earliest
