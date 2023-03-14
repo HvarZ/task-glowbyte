@@ -31,9 +31,9 @@ public class XmlToJsonPOJO implements Processor {
             } else {
                 List<OutIncome> list = new ArrayList<>();
                 list.add(OutIncome.builder()
-                            .amount(income.getAmount())
-                            .month(income.getMonth())
-                            .build());
+                        .amount(income.getAmount())
+                        .month(income.getMonth())
+                        .build());
                 incomeMap.put(income.getClientId(), list);
             }
         }
@@ -48,10 +48,21 @@ public class XmlToJsonPOJO implements Processor {
 
         OutKafka body = OutKafka.builder()
                 .id(application.getApplicationId())
-                .monthly_payment(new BigDecimal("123"))
+                .monthly_payment(getMonthlyPayment(application))
                 .clients(clients)
                 .build();
 
         exchange.getIn().setBody(body);
+    }
+
+    private BigDecimal getMonthlyPayment(Application application) {
+        double credit = application.getCreditAmount().doubleValue();
+        double rate = application.getCreditRate().doubleValue();
+        double n = application.getCreditTerm().doubleValue();
+        double buffer = Math.pow(1 + (rate / 1200), n);
+
+        return BigDecimal.valueOf(
+                credit * ((rate / 1200) * buffer) / (buffer - 1)
+        );
     }
 }
