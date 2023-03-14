@@ -1,9 +1,9 @@
 package com.glowbyte.practicaltask.processors;
 
-import com.glowbyte.practicaltask.entity.Address;
-import com.glowbyte.practicaltask.entity.Application;
-import com.glowbyte.practicaltask.entity.Client;
-import com.glowbyte.practicaltask.entity.Income;
+import com.glowbyte.practicaltask.entity.db.Address;
+import com.glowbyte.practicaltask.entity.db.Application;
+import com.glowbyte.practicaltask.entity.db.Client;
+import com.glowbyte.practicaltask.entity.db.Income;
 import com.glowbyte.practicaltask.repository.ApplicationRepo;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
