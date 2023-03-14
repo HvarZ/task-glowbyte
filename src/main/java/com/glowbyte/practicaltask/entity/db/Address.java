@@ -1,4 +1,4 @@
-package com.glowbyte.practicaltask.entity;
+package com.glowbyte.practicaltask.entity.db;
 
 
 import lombok.Builder;

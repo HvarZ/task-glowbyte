@@ -1,9 +1,8 @@
-package com.glowbyte.practicaltask.entity;
+package com.glowbyte.practicaltask.entity.db;
 
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
