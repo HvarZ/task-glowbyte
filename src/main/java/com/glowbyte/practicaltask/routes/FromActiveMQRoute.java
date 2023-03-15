@@ -31,6 +31,7 @@ public class FromActiveMQRoute extends RouteBuilder {
                 .process(new DBFiller(applicationRepo))
                 .process(new XmlToJsonPOJO())
                 .marshal(jsonDataFormat)
+                .removeHeaders("*")
                 .to("kafka:topic_1");
     }
 }

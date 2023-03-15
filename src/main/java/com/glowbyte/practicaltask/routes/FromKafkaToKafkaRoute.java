@@ -14,7 +14,7 @@ public class FromKafkaToKafkaRoute extends RouteBuilder {
         JacksonDataFormat jsonDataFormatOut = new JacksonDataFormat(OutKafka.class);
         JacksonDataFormat jsonDataFormatIn = new JacksonDataFormat(InKafka.class);
 
-        from("kafka:topic_1")
+        from("kafka:topic_1?groupId=from_topic_1")
                 .routeId("Second Route")
                 .unmarshal(jsonDataFormatOut)
                 .process(new JsonInToJsonOut())
