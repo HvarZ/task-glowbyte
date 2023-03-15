@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Application Id="12345" CreditAmount="150" CreditRate="18" CreditTerm="12">
+<Application Id="123" CreditAmount="150" CreditRate="18" CreditTerm="12">
     <Clients>
         <Client Id="3451" FirstName="Zakhar" SurName="Maksim" LastName="Ushakov" BirthPlace="Penza">
             <Addresses>
@@ -20,9 +20,9 @@
         <Income ClientId="3451" Month="2023-04-02" Amount="33"/>
         <Income ClientId="3451" Month="2023-05-02" Amount="10"/>
         <Income ClientId="3451" Month="2023-06-02" Amount="9"/>
-        <Income ClientId="3453431" Month="2023-01-02" Amount="5"/>
-        <Income ClientId="3453431" Month="2023-02-02" Amount="4"/>
-        <Income ClientId="3453431" Month="2023-03-02" Amount="6"/>
-        <Income ClientId="3453431" Month="2023-04-02" Amount="6"/>
+        <Income ClientId="3453431" Month="2023-01-02" Amount="10"/>
+        <Income ClientId="3453431" Month="2023-02-02" Amount="15"/>
+        <Income ClientId="3453431" Month="2023-03-02" Amount="12"/>
+        <Income ClientId="3453431" Month="2023-04-02" Amount="8"/>
     </Incomes>
 </Application>
