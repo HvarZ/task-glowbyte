@@ -10,7 +10,7 @@ import org.apache.camel.Processor;
 
 public class AnswerJsonToAnswerXML implements Processor {
     @Override
-    public void process(Exchange exchange) throws Exception {
+    public void process(Exchange exchange) {
         InKafka answer = (InKafka) exchange.getIn().getBody();
         Decision decision = Decision.APPROVED;
 
@@ -21,6 +21,11 @@ public class AnswerJsonToAnswerXML implements Processor {
             }
         }
 
-        exchange.getIn().setBody(XMLAnswer.builder().application(new Application(answer.getId())).decision(decision));
+        exchange.getIn().setBody(
+                XMLAnswer.builder()
+                        .application(new Application(answer.getId()))
+                        .decision(decision)
+                        .build()
+        );
     }
 }
